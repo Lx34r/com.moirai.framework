@@ -38,7 +38,7 @@ namespace Moirai.Atropos.Resource
 
         public string FallbackHostServerURL { get; set; }
 
-        public LoadResWayWebGL LoadResWayWebGL { get; set; }
+        public ELoadResWayWebGL LoadResWayWebGL { get; set; }
 
         private string _applicableGameVersion;
         /// <summary>
@@ -194,7 +194,7 @@ namespace Moirai.Atropos.Resource
                 createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, webDecryptionServices);
 #else
                 Log.Info("=======================UNITY_WEBGL=======================");
-                if (LoadResWayWebGL == LoadResWayWebGL.Remote)
+                if (LoadResWayWebGL == ELoadResWayWebGL.Remote)
                 {
                     createParameters.WebRemoteFileSystemParameters = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices, webDecryptionServices);
                 }

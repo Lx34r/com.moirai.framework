@@ -34,12 +34,12 @@ namespace Moirai.Main
         /// <summary>
         /// 是否强制更新。
         /// </summary>
-        public UpdateStyle UpdateStyle;
+        public EUpdateStyle UpdateStyle;
     
         /// <summary>
         /// 是否提示。
         /// </summary>
-        public UpdateNotice UpdateNotice;
+        public EUpdateNotice UpdateNotice;
     
         /// <summary>
         /// 热更资源地址。

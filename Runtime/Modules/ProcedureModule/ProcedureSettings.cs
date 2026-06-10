@@ -116,7 +116,7 @@ namespace Moirai.Atropos.Procedure
 #if UNITY_EDITOR
                         s_Instance = SettingHelper.LoadSettingSO<ProcedureSettings>(SETTINGS_DATA_FILE);
 #else
-                        Log.Warning($"Could not find Settings at path '{SETTINGS_DATA_FILE} - Create using Tools->Settings->{SETTINGS_DATA_NAME}'");
+                        Log.Error($"Could not find Settings at path '{SETTINGS_DATA_FILE} - Create using Tools->Settings->{SETTINGS_DATA_NAME}'");
 #endif
                     }
                 }

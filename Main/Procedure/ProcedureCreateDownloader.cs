@@ -149,10 +149,10 @@ namespace Moirai.Main
             else if (data.UpdateType == UpdateType.ResourceUpdate)
             {
                 // 强制
-                if (data.UpdateStyle == UpdateStyle.Force)
+                if (data.UpdateStyle == EUpdateStyle.Force)
                 {
                     // 提示
-                    if (data.UpdateNotice == UpdateNotice.Notice)
+                    if (data.UpdateNotice == EUpdateNotice.Notice)
                     {
                         NetworkReachability networkReachability = Application.internetReachability;
                         string desc = LoadText.Instance.Label_Load_Force_WIFI;
@@ -165,16 +165,16 @@ namespace Moirai.Main
                             StartDownFile, Application.Quit);
                     }
                     // 不提示
-                    else if (data.UpdateNotice == UpdateNotice.NoNotice)
+                    else if (data.UpdateNotice == EUpdateNotice.NoNotice)
                     {
                         StartDownFile();
                     }
                 }
                 // 非强制
-                else if (data.UpdateStyle == UpdateStyle.Optional)
+                else if (data.UpdateStyle == EUpdateStyle.Optional)
                 {
                     // 提示
-                    if (data.UpdateNotice == UpdateNotice.Notice)
+                    if (data.UpdateNotice == EUpdateNotice.Notice)
                     {
                         LauncherMgr.ShowMessageBox(string.Format(LoadText.Instance.Label_Load_Notice,$"{_totalSizeMb}MB"),
                             StartDownFile, () =>
@@ -183,7 +183,7 @@ namespace Moirai.Main
                             });
                     }
                     // 不提示
-                    else if (data.UpdateNotice == UpdateNotice.NoNotice)
+                    else if (data.UpdateNotice == EUpdateNotice.NoNotice)
                     {
                         StartDownFile();
                     }

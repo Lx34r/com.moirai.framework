@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-#if ENABLE_HYBRIDCLR
-using HybridCLR;
-#endif
-using UnityEngine;
 using System.Reflection;
-using YooAsset;
 using Cysharp.Threading.Tasks;
 using Moirai.Atropos;
 using Moirai.Atropos.Fsm;
 using Moirai.Atropos.Procedure;
-using Moirai.Clotho;
+using UnityEngine;
+using YooAsset;
+#if ENABLE_HYBRIDCLR
+using HybridCLR;
+#endif
 
 namespace Moirai.Main
 {
@@ -133,18 +132,18 @@ namespace Moirai.Main
                 return;
             }
 
-            string mainFullName = typeof(GameMain).FullName;
+            string mainFullName = UpdateSettings.EntranceClass;
             Type appType = mainFullName != null ? _mainLogicAssembly.GetType(mainFullName) : null;
             if (appType == null)
             {
-                Log.Fatal($"Main logic({_mainLogicAssembly.GetName().Name}) type 'GameMain' missing.");
+                Log.Fatal($"Main logic({_mainLogicAssembly.GetName().Name}) type '{0}' missing.", mainFullName);
                 return;
             }
             
-            var entryMethod = appType.GetMethod(nameof(GameMain.Entrance));
+            var entryMethod = appType.GetMethod(UpdateSettings.EntranceMethod);
             if (entryMethod == null)
             {
-                Log.Fatal($"Main logic entry method 'Entrance' missing.");
+                Log.Fatal("Main logic entry method '{0}' missing.", UpdateSettings.EntranceMethod);
                 return;
             }
             object[] objects = new object[] { new object[] { _hotfixAssemblyList } };
@@ -157,8 +156,7 @@ namespace Moirai.Main
             Assembly mainLogicAssembly = null;
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (string.Compare(UpdateSettings.LogicMainDllName, $"{assembly.GetName().Name}.dll",
-                        StringComparison.Ordinal) == 0)
+                if (string.Compare(UpdateSettings.LogicMainDllName, $"{assembly.GetName().Name}.dll", StringComparison.Ordinal) == 0)
                 {
                     mainLogicAssembly = assembly;
                 }

@@ -8,7 +8,7 @@ namespace Moirai.Atropos
     /// <summary>
     /// 强制更新类型。
     /// </summary>
-    public enum UpdateStyle
+    public enum EUpdateStyle
     {
         /// <summary>
         /// 强制更新(不更新无法进入游戏。)
@@ -24,7 +24,7 @@ namespace Moirai.Atropos
     /// <summary>
     /// 是否提示更新。
     /// </summary>
-    public enum UpdateNotice
+    public enum EUpdateNotice
     {
         /// <summary>
         /// 更新存在提示。
@@ -42,7 +42,7 @@ namespace Moirai.Atropos
     /// StreamingAssets：跳过远程下载资源直接访问StreamingAssets
     /// Remote：访问远程资源
     /// </summary>
-    public enum LoadResWayWebGL
+    public enum ELoadResWayWebGL
     {
         Remote,
         StreamingAssets,
@@ -57,7 +57,7 @@ namespace Moirai.Atropos
         public static string ProjectName => Instance.m_ProjectName;
 
         [Header("自动同步 [HybridCLRGlobalSettings]")]
-        [SerializeField] private List<string> m_HotUpdateAssemblies = new List<string>() {"Moirai.Clotho.dll","Moirai.Lachesis.dll" };
+        [SerializeField] private List<string> m_HotUpdateAssemblies = new List<string>() {"GameLogic.dll" };
         /// <summary>热更新 dll</summary>
         public static List<string> HotUpdateAssemblies => Instance.m_HotUpdateAssemblies;
 
@@ -67,10 +67,18 @@ namespace Moirai.Atropos
         public static List<string> AOTMetaAssemblies => Instance.m_AOTMetaAssemblies;
 
         [Tooltip("主业务逻辑 dll")]
-        [SerializeField] private string m_LogicMainDllName = "Moirai.Clotho.dll";
+        [SerializeField] private string m_LogicMainDllName = "GameLogic.dll";
         /// <summary>主业务逻辑 dll</summary>
         public static string LogicMainDllName => Instance.m_LogicMainDllName;
 
+        [SerializeField] private string m_EntranceClass = "GameLogic.HotfixEntry";
+        /// <summary>主业务逻辑入口类</summary>
+        public static string EntranceClass => Instance.m_EntranceClass;
+        [SerializeField] private string m_EntranceMethod = "Entrance";
+        /// <summary>主业务逻辑入口方法</summary>
+        public static string EntranceMethod => Instance.m_EntranceMethod;
+
+        [Space]
         [Tooltip("程序集文本资产打包Asset后缀名")]
         [SerializeField] private string m_AssemblyTextAssetExtension = ".bytes";
         /// <summary>程序集文本资产打包Asset后缀名</summary>
@@ -83,14 +91,14 @@ namespace Moirai.Atropos
 
         [Header("更新设置")]
         [Tooltip("强制更新类型")]
-        [SerializeField] private UpdateStyle m_UpdateStyle = UpdateStyle.Force;
+        [SerializeField] private EUpdateStyle m_UpdateStyle = EUpdateStyle.Force;
         /// <summary>强制更新类型</summary>
-        public static UpdateStyle UpdateStyle => Instance.m_UpdateStyle;
+        public static EUpdateStyle UpdateStyle => Instance.m_UpdateStyle;
 
         [Tooltip("是否提示更新")]
-        [SerializeField] private UpdateNotice m_UpdateNotice = UpdateNotice.Notice;
+        [SerializeField] private EUpdateNotice m_UpdateNotice = EUpdateNotice.Notice;
         /// <summary>是否提示更新</summary>
-        public static UpdateNotice UpdateNotice => Instance.m_UpdateNotice;
+        public static EUpdateNotice UpdateNotice => Instance.m_UpdateNotice;
 
         [Tooltip("资源服务器地址")]
         [SerializeField] private string m_ResDownLoadPath = "http://127.0.0.1:8081";
@@ -103,9 +111,9 @@ namespace Moirai.Atropos
         private static string FallbackResDownLoadPath => Instance.m_FallbackResDownLoadPath;
 
         [Header("WebGL设置")]
-        [SerializeField] private LoadResWayWebGL m_LoadResWayWebGL = LoadResWayWebGL.Remote;
+        [SerializeField] private ELoadResWayWebGL m_LoadResWayWebGL = ELoadResWayWebGL.Remote;
         /// <summary>WebGL平台加载本地资源/加载远程资源。</summary>
-        public static LoadResWayWebGL LoadResWayWebGL => Instance.m_LoadResWayWebGL;
+        public static ELoadResWayWebGL LoadResWayWebGL => Instance.m_LoadResWayWebGL;
 
         [Header("构建资源设置")]
         [Tooltip("是否自动将打包资源复制到打包后的 StreamingAssets 地址")]
@@ -164,11 +172,11 @@ namespace Moirai.Atropos
         public static string GetPlatformName()
         {
 #if UNITY_ANDROID
-        return "Android";
+            return "Android";
 #elif UNITY_IOS
-        return "IOS";
+            return "IOS";
 #elif UNITY_WEBGL
-        return "WebGL";
+            return "WebGL";
 #else
             switch (Application.platform)
             {
@@ -215,7 +223,7 @@ namespace Moirai.Atropos
 #if UNITY_EDITOR
                         s_Instance = SettingHelper.LoadSettingSO<UpdateSettings>(SETTINGS_DATA_FILE);
 #else
-                        Log.Warning($"Could not find Settings at path '{SETTINGS_DATA_FILE} - Create using Tools->Settings->{SETTINGS_DATA_NAME}'");
+                        Log.Error($"Could not find Settings at path '{SETTINGS_DATA_FILE} - Create using Tools->Settings->{SETTINGS_DATA_NAME}'");
 #endif
                     }
                 }

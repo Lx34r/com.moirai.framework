@@ -87,7 +87,7 @@ namespace Moirai.Atropos.Resource
         /// <summary>
         /// WebGL平台加载本地资源/加载远程资源。
         /// </summary>
-        LoadResWayWebGL LoadResWayWebGL { get; set; }
+        ELoadResWayWebGL LoadResWayWebGL { get; set; }
 
         /// <summary>
         /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。

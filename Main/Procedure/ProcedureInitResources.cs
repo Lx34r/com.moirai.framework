@@ -137,7 +137,7 @@ namespace Moirai.Main
         private bool IsNeedUpdate()
         {
             // 如果不能联网且当前游戏非强制(不更新可以进入游戏。)
-            if (UpdateSettings.UpdateStyle == UpdateStyle.Optional && !_resourceModule.UpdatableWhilePlaying)
+            if (UpdateSettings.UpdateStyle == EUpdateStyle.Optional && !_resourceModule.UpdatableWhilePlaying)
             {
                 // 获取上次成功记录的版本
                 string packageVersion = SettingUtility.GetString(Constant.GAME_VERSION, string.Empty);
@@ -152,7 +152,7 @@ namespace Moirai.Main
 
                 _resourceModule.PackageVersion = packageVersion;
 
-                if (UpdateSettings.UpdateNotice == UpdateNotice.Notice)
+                if (UpdateSettings.UpdateNotice == EUpdateNotice.Notice)
                 {
                     LauncherMgr.ShowUI<LoadUpdateUI>(LoadText.Instance.Label_Load_Notice);
                     LauncherMgr.ShowMessageBox($"更新失败，检测到可选资源更新，推荐完成更新提升游戏体验！ \\n \\n 确定再试一次，取消进入游戏",
