@@ -2,9 +2,10 @@
 
 namespace Moirai.Atropos.Input
 {
+    public enum EMouseButton { Left = 0, Right = 1, Middle = 2 }
+
     public interface IInputModule
     {
-
         /// <summary>是否启用输入</summary>
         bool Enabled { get; set; }
 
@@ -80,19 +81,19 @@ namespace Moirai.Atropos.Input
         /// 按下鼠标按键
         /// </summary>
         /// <returns></returns>
-        bool GetMouseButtonDown(IInputHandler.MouseButton button);
+        bool GetMouseButtonDown(EMouseButton button);
 
         /// <summary>
         /// 抬起鼠标按键
         /// </summary>
         /// <returns></returns>
-        bool GetMouseButtonUp(IInputHandler.MouseButton button);
+        bool GetMouseButtonUp(EMouseButton button);
 
         /// <summary>
         /// 按住鼠标按键
         /// </summary>
         /// <returns></returns>
-        bool GetMouseButtonPressed(IInputHandler.MouseButton button);
+        bool GetMouseButtonPressed(EMouseButton button);
 
         /// <summary>
         /// 返回鼠标的当前位置

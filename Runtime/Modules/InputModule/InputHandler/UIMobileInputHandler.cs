@@ -51,17 +51,17 @@ namespace Moirai.Atropos.Input
             return found ? element.Vector2Value : Vector2.zero;
         }
         
-        public bool GetMouseButtonDown(IInputHandler.MouseButton button)
+        public bool GetMouseButtonDown(EMouseButton button)
         {
             return false;
         }
         
-        public bool GetMouseButtonUp(IInputHandler.MouseButton button)
+        public bool GetMouseButtonUp(EMouseButton button)
         {
             return false;
         }
         
-        public bool GetMouseButtonPressed(IInputHandler.MouseButton button)
+        public bool GetMouseButtonPressed(EMouseButton button)
         {
             return false;
         }

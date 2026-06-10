@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Moirai.Atropos.Input
 {
@@ -8,20 +7,6 @@ namespace Moirai.Atropos.Input
     /// </summary>
     public interface IInputHandler
     {
-        public enum MouseButton
-        {
-            Left = 0,
-            Right = 1,
-            Middle = 2
-        }
-        
-        [Flags]
-        public enum InputFlagsEx
-        {
-            ByButton = 1,
-            ByClick = 2
-        }
-        
         #region Button
         
         /// <summary>
@@ -84,19 +69,19 @@ namespace Moirai.Atropos.Input
         /// 按下鼠标按键
         /// </summary>
         /// <returns></returns>
-        public bool GetMouseButtonDown(MouseButton button);
+        public bool GetMouseButtonDown(EMouseButton button);
         
         /// <summary>
         /// 抬起鼠标按键
         /// </summary>
         /// <returns></returns>
-        public bool GetMouseButtonUp(MouseButton button);
+        public bool GetMouseButtonUp(EMouseButton button);
         
         /// <summary>
         /// 按住鼠标按键
         /// </summary>
         /// <returns></returns>
-        public bool GetMouseButtonPressed(MouseButton button);
+        public bool GetMouseButtonPressed(EMouseButton button);
         
         /// <summary>
         /// 返回鼠标的当前位置

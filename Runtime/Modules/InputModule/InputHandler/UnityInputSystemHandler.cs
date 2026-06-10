@@ -64,39 +64,39 @@ namespace Moirai.Atropos.Input
             return output;
         }
 
-        public bool GetMouseButtonDown(IInputHandler.MouseButton button)
+        public bool GetMouseButtonDown(EMouseButton button)
         {
             switch (button)
             {
-                case IInputHandler.MouseButton.Middle:
+                case EMouseButton.Middle:
                     return Mouse.current.middleButton.wasPressedThisFrame;
-                case IInputHandler.MouseButton.Right:
+                case EMouseButton.Right:
                     return Mouse.current.rightButton.wasPressedThisFrame;
                 default:
                     return Mouse.current.leftButton.wasPressedThisFrame;
             }
         }
 
-        public bool GetMouseButtonUp(IInputHandler.MouseButton button)
+        public bool GetMouseButtonUp(EMouseButton button)
         {
             switch (button)
             {
-                case IInputHandler.MouseButton.Middle:
+                case EMouseButton.Middle:
                     return Mouse.current.middleButton.wasReleasedThisFrame;
-                case IInputHandler.MouseButton.Right:
+                case EMouseButton.Right:
                     return Mouse.current.rightButton.wasReleasedThisFrame;
                 default:
                     return Mouse.current.leftButton.wasReleasedThisFrame;
             }
         }
 
-        public bool GetMouseButtonPressed(IInputHandler.MouseButton button)
+        public bool GetMouseButtonPressed(EMouseButton button)
         {
             switch (button)
             {
-                case IInputHandler.MouseButton.Middle:
+                case EMouseButton.Middle:
                     return Mouse.current.middleButton.isPressed;
-                case IInputHandler.MouseButton.Right:
+                case EMouseButton.Right:
                     return Mouse.current.rightButton.isPressed;
                 default:
                     return Mouse.current.leftButton.isPressed;

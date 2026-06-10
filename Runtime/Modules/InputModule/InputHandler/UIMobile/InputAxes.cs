@@ -9,36 +9,42 @@ namespace Moirai.Atropos.Input
     [AddComponentMenu("Tools/Input/UI/Input Axes")]
     public class InputAxes : MonoBehaviour, IDragHandler, IEndDragHandler, IUIVector2Action
     {
-        public enum DeadZoneMode
-        {
-            Radial,
-            PerAxis
-        }
-
-        [Header("Targets")]
+        // 目标
+        [Header("目标 [Targets]")]
 
         // [SerializeField] private MobileInput m_HorizontalAxisMobileInput = null;
-
         // [SerializeField] private MobileInput m_VerticalAxisMobileInput = null;
 
         [SerializeField] private string m_ActionName = "";
 
-        [Header("处理属性 [Handles properties]")]
+        // 属性处理
+        [Header("属性处理 [Handles properties]")]
 
         [SerializeField] private bool m_InvertHorizontal = false;
 
         [SerializeField] private bool m_InvertVertical = false;
 
+        private enum EDeadZoneMode
+        {
+            /// <summary>使用圆形区域来确定死区。</summary>
+            /// <remarks>输入矢量的大小与死区距离进行比较，如果落在圆形死区内，两个轴都设为0。</remarks>
+            Radial,
+
+            /// <summary>使用按轴区域来确定死区。</summary>
+            /// <remarks>每个轴的值独立与死区距离进行比较，如果某个轴的绝对值落在死区距离内，该轴设为0。</remarks>
+            PerAxis
+        }
 
         [Tooltip ("死区是如何影响输出值的呢？为了更好地可视化死区，可以把 “径向（Radial）” 想象成一个圆形，把 “按轴（PerAxis）” 想象成一个十字形。")]
-        [SerializeField] private DeadZoneMode m_DeadZoneMode = DeadZoneMode.Radial;
+        [SerializeField] private EDeadZoneMode m_DeadZoneMode = EDeadZoneMode.Radial;
 
         [Tooltip ("产生非零输出所需的最小幅度（考虑轴的缩放）。幅度低于此值将被视为零。")]
         [SerializeField, Range(0f, 1f)] private float m_DeadZoneDistance = 0.2f;
 
         [SerializeField] private int m_BoundsRadius = 50;
 
-        [Header("处理视觉对象 [Handle visuals]")]
+        // 视觉对象处理
+        [Header("视觉对象处理 [Handle visuals]")]
 
         [SerializeField, Range(2f, 50f)] private float m_ReturnLerpSpeed = 10f;
 
@@ -97,7 +103,7 @@ namespace Moirai.Atropos.Input
 
             // Axes ------------------------------------------------------------------------------------------------        
 
-            if (m_DeadZoneMode == DeadZoneMode.Radial)
+            if (m_DeadZoneMode == EDeadZoneMode.Radial)
             {
                 float radius = Vector3.Magnitude(axesValue);
 

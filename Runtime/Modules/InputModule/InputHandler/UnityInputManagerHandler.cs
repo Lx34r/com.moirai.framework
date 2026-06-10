@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if ENABLE_LEGACY_INPUT_MANAGER
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace Moirai.Atropos.Input
@@ -113,39 +114,39 @@ namespace Moirai.Atropos.Input
             return output;
         }
 
-        public bool GetMouseButtonPressed(IInputHandler.MouseButton button)
+        public bool GetMouseButtonPressed(EMouseButton button)
         {
             switch (button)
             {
-                case IInputHandler.MouseButton.Right: 
+                case EMouseButton.Right: 
                     return UnityEngine.Input.GetMouseButton(1);
-                case IInputHandler.MouseButton.Middle: 
+                case EMouseButton.Middle: 
                     return UnityEngine.Input.GetMouseButton(2);
                 default:
                     return UnityEngine.Input.GetMouseButton(0);
             }
         }
 
-        public bool GetMouseButtonDown(IInputHandler.MouseButton button)
+        public bool GetMouseButtonDown(EMouseButton button)
         {
             switch (button)
             {
-                case IInputHandler.MouseButton.Right:
+                case EMouseButton.Right:
                     return UnityEngine.Input.GetMouseButtonDown(1);
-                case IInputHandler.MouseButton.Middle:
+                case EMouseButton.Middle:
                     return UnityEngine.Input.GetMouseButtonDown(2);
                 default:
                     return UnityEngine.Input.GetMouseButtonDown(0);
             }
         }
         
-        public bool GetMouseButtonUp(IInputHandler.MouseButton button)
+        public bool GetMouseButtonUp(EMouseButton button)
         {
             switch (button)
             {
-                case IInputHandler.MouseButton.Right:
+                case EMouseButton.Right:
                     return UnityEngine.Input.GetMouseButtonUp(1);
-                case IInputHandler.MouseButton.Middle:
+                case EMouseButton.Middle:
                     return UnityEngine.Input.GetMouseButtonUp(2);
                 default:
                     return UnityEngine.Input.GetMouseButtonUp(0);
@@ -182,3 +183,4 @@ namespace Moirai.Atropos.Input
         }
     }
 }
+#endif

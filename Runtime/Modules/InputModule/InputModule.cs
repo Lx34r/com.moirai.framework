@@ -83,9 +83,9 @@ namespace Moirai.Atropos.Input
         public bool GetBool(string actionName, string actionGroup = "") => _inputHandler.GetBool(actionName, actionGroup);
         public float GetFloat(string actionName, string actionGroup = "") => _inputHandler.GetFloat(actionName, actionGroup);
         public Vector2 GetVector2(string actionName, string actionGroup = "") => _inputHandler.GetVector2(actionName, actionGroup);
-        public bool GetMouseButtonDown(IInputHandler.MouseButton button) => _inputHandler.GetMouseButtonDown(button);
-        public bool GetMouseButtonUp(IInputHandler.MouseButton button) => _inputHandler.GetMouseButtonUp(button);
-        public bool GetMouseButtonPressed(IInputHandler.MouseButton button) => _inputHandler.GetMouseButtonPressed(button);
+        public bool GetMouseButtonDown(EMouseButton button) => _inputHandler.GetMouseButtonDown(button);
+        public bool GetMouseButtonUp(EMouseButton button) => _inputHandler.GetMouseButtonUp(button);
+        public bool GetMouseButtonPressed(EMouseButton button) => _inputHandler.GetMouseButtonPressed(button);
         public Vector2 GetMousePosition() => _inputHandler.GetMousePosition();
         public Vector2 GetScrollDelta() => _inputHandler.GetScrollDelta();
 

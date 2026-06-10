@@ -11,7 +11,7 @@ namespace Moirai.Atropos.Input.Prompts
     [RequireComponent(typeof(Image))]
     public class PromptActionIcon : InputSystemPromptBase
     {
-        private enum ScaleModes { None, Height, Width }
+        private enum EScaleModes { None, Height, Width }
 
         // Bindings
         private const string BINDINGS_GROUP = "绑定 [Bindings]";
@@ -37,7 +37,7 @@ namespace Moirai.Atropos.Input.Prompts
         [BoxGroup(SETTINGS_GROUP)]
         [Tooltip("设置其原始大小时，缩放基于的基准")]
         [ShowIf(nameof(m_SetNativeSize))]
-        [SerializeField] private ScaleModes m_ScaleMode = ScaleModes.Height;
+        [SerializeField] private EScaleModes m_ScaleMode = EScaleModes.Height;
 
         protected override bool IsValid => m_Image != null;
         
@@ -56,12 +56,12 @@ namespace Moirai.Atropos.Input.Prompts
             m_Image.sprite = sourceSprite;
             if (m_SetNativeSize)
             {
-                var originalValue = m_ScaleMode == ScaleModes.Height ? m_Image.rectTransform.rect.height : m_Image.rectTransform.rect.width;
+                var originalValue = m_ScaleMode == EScaleModes.Height ? m_Image.rectTransform.rect.height : m_Image.rectTransform.rect.width;
                 m_Image.SetNativeSize();
 
-                if (m_ScaleMode != ScaleModes.None)
+                if (m_ScaleMode != EScaleModes.None)
                 {
-                    float scale = originalValue / (m_ScaleMode == ScaleModes.Height ? m_Image.rectTransform.rect.height : m_Image.rectTransform.rect.width);
+                    float scale = originalValue / (m_ScaleMode == EScaleModes.Height ? m_Image.rectTransform.rect.height : m_Image.rectTransform.rect.width);
                     m_Image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, m_Image.rectTransform.rect.height * scale);
                     m_Image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, m_Image.rectTransform.rect.width * scale);
                 }

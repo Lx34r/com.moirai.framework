@@ -29,11 +29,19 @@ namespace Moirai.Atropos.Input
                 switch (Instance.m_InputType)
                 {
                     case EInputType.InputManager:
+#if !ENABLE_LEGACY_INPUT_MANAGER
+                        Log.Error("Please enable {0} Handling in Project Settings!", Instance.m_InputType);
+                        return null;
+#endif
                         Instance._inputHandler = new UnityInputManagerHandler();
                         Instance._inputHandler.OnInit();
                         break;
 
                     case EInputType.InputSystem:
+#if !ENABLE_INPUT_SYSTEM
+                        Log.Error("Please install {0} package!", Instance.m_InputType);
+                        return null;
+#endif
                         Instance._inputHandler = new UnityInputSystemHandler();
                         Instance._inputHandler.OnInit();
                         break;
