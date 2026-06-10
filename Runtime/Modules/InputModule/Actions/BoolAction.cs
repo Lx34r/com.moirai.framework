@@ -155,37 +155,11 @@ namespace Moirai.Atropos.Input
     // EDITOR ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
     // ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+
 #if UNITY_EDITOR
     
     [UnityEditor.CustomPropertyDrawer(typeof(BoolAction))]
-    public class BoolActionEditor : UnityEditor.PropertyDrawer
-    {
-        public override void OnGUI(Rect position, UnityEditor.SerializedProperty property, GUIContent label)
-        {
-            // 开始绘制属性
-            UnityEditor.EditorGUI.BeginProperty(position, label, property);
-
-            // 查找“value”属性
-            UnityEditor.SerializedProperty value = property.FindPropertyRelative("m_Value");
-
-            // 设置属性字段的矩形区域
-            Rect fieldRect = position;
-            fieldRect.height = UnityEditor.EditorGUIUtility.singleLineHeight;
-            fieldRect.width = 100;
-
-            // 绘制属性标签
-            UnityEditor.EditorGUI.LabelField(fieldRect, label);
-
-            // 移动矩形区域到右侧
-            fieldRect.x += 110;
-
-            // 绘制“value”属性的字段
-            UnityEditor.EditorGUI.PropertyField(fieldRect, value, GUIContent.none);
-
-            // 结束绘制属性
-            UnityEditor.EditorGUI.EndProperty();
-        }
-    }
+    public class BoolActionEditor : ActionPropertyDrawerBase { }
 
 #endif
 }

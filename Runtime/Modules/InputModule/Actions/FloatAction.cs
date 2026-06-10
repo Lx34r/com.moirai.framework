@@ -32,33 +32,7 @@ namespace Moirai.Atropos.Input
 #if UNITY_EDITOR
     
     [UnityEditor.CustomPropertyDrawer(typeof(FloatAction))]
-    public class FloatActionEditor : UnityEditor.PropertyDrawer
-    {
-        public override void OnGUI(Rect position, UnityEditor.SerializedProperty property, GUIContent label)
-        {
-            UnityEditor.EditorGUI.BeginProperty(position, label, property);
-
-            // 查找 FloatAction 结构体中的 value 属性
-            UnityEditor.SerializedProperty value = property.FindPropertyRelative("m_Value");
-
-            // 设置标签的矩形区域
-            Rect fieldRect = position;
-            fieldRect.height = UnityEditor.EditorGUIUtility.singleLineHeight;
-            fieldRect.width = 100;
-
-            // 绘制属性的标签
-            UnityEditor.EditorGUI.LabelField(fieldRect, label);
-
-            // 移动矩形区域，为值的输入框腾出空间
-            fieldRect.x += 110;
-
-            // 绘制 value 属性的输入框，不显示额外的标签
-            UnityEditor.EditorGUI.PropertyField(fieldRect, value, GUIContent.none);
-
-            // 结束绘制属性
-            UnityEditor.EditorGUI.EndProperty();
-        }
-    }
+    public class FloatActionEditor : ActionPropertyDrawerBase { }
 
 #endif
 }

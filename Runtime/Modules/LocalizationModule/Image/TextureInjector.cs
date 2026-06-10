@@ -1,57 +1,45 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Moirai.Atropos.Localization
 {
-	public class TextureInjector : IInjector
+	public class TextureInjector : ImageInjectorBase
 	{
-		readonly string localizedTextID;
-		readonly Renderer renderer;
-		readonly string propertyName;
-		readonly Texture2D[] texture2Ds;
+		private readonly Renderer _renderer;
+		private readonly string _propertyName;
+		private readonly Texture2D[] _texture2Ds;
 
 		public TextureInjector(Renderer renderer, string localizedTextID, string propertyName, Texture2D[] texture2Ds)
+			: base(localizedTextID)
 		{
-			this.localizedTextID = localizedTextID;
-			this.renderer = renderer;
-			this.propertyName = propertyName;
-			this.texture2Ds = texture2Ds;
+			_renderer = renderer;
+			_propertyName = propertyName;
+			_texture2Ds = texture2Ds;
 		}
 
-		public void Inject<T1, T2>(T1 localizedData, T2 localizer) where T2 : LocalizerBase
+		protected override void ApplyFromArray(int index)
 		{
-			if (localizedData is int index)
-			{
-				if (string.IsNullOrEmpty(localizedTextID))
-				{
-					renderer.material.SetTexture(propertyName, texture2Ds[index]);
-				}
-				else
-				{
-					ApplyFromResource().Forget();
-				}
-			}
+			_renderer.material.SetTexture(_propertyName, _texture2Ds[index]);
 		}
 
-		private async UniTaskVoid ApplyFromResource()
+		protected override void ApplyAsset(Object asset)
 		{
-			string textIDValue = GameModule.Localization.GetTextFromId(localizedTextID);
-			var result = await GameModule.Resource.LoadAssetAsync<UnityEngine.Object>(textIDValue);
+			_renderer.material.SetTexture(_propertyName, asset as Texture2D);
+		}
 
-			if (result is not Sprite or Texture2D)
-			{
-				Log.Error($"本地化图片类型错误，{textIDValue}");
-			}
-			
-			if (result is Sprite sprite)
-			{
-				Texture2D texture = sprite.texture;
-				renderer.material.SetTexture(propertyName, texture);
-				Log.Warning($"本地化图片类型错误，已自动转换：{result}");
-				return;
-			}
+		protected override string GetExpectedTypeName() => "Texture2D";
 
-			renderer.material.SetTexture(propertyName, result as Texture2D);
+		protected override bool IsExpectedType(Object asset) => asset is Texture2D;
+
+		protected override bool IsConvertibleType(Object asset) => asset is Sprite;
+
+		protected override bool TryConvertAndApply(Object asset)
+		{
+			if (asset is Sprite sprite)
+			{
+				_renderer.material.SetTexture(_propertyName, sprite.texture);
+				return true;
+			}
+			return false;
 		}
 	}
 }
