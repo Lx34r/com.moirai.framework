@@ -1,7 +1,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using UnityEngine;
+using Moirai.Atropos;
 
 namespace Moirai.Atropos.Save
 {
@@ -45,7 +45,7 @@ namespace Moirai.Atropos.Save
                 }
                 catch (CryptographicException ce)
                 {
-                    Debug.LogError("[SaveHandler] Decryption failed for JSON save data: " + ce);
+                    Log.Error("[SaveHandler] Decryption failed for JSON save data: " + ce);
                     return Task.FromResult<T>(default);
                 }
                 memoryStream.Position = 0;

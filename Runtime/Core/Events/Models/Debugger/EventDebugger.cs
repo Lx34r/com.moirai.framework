@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using Moirai.Atropos;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -418,7 +419,7 @@ namespace Moirai.Atropos.Events
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"[EventDebugger] Failed to reconstruct event '{eventBase.EventBaseName}' (type: {eventBase.EventType}): {ex}");
+                    Log.Error($"[EventDebugger] Failed to reconstruct event '{eventBase.EventBaseName}' (type: {eventBase.EventType}): {ex}");
                 }
                 if (newEvent == null)
                 {

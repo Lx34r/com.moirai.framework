@@ -64,7 +64,7 @@ namespace Moirai.Atropos.R3
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogWarning($"[ReactivePropertyConverter] Failed to deserialize {objectType.Name}, falling back to default: {ex}");
+                Log.Warning($"[ReactivePropertyConverter] Failed to deserialize {objectType.Name}, falling back to default: {ex}");
                 return Activator.CreateInstance(objectType);
             }
         }
