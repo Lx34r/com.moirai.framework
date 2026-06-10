@@ -2,11 +2,11 @@
 
 ![Logo](Documentation~/src/logo.jpg)
 
-[![Unity Version](https://img.shields.io/badge/Unity-2021.3.20%2B-blue.svg?style=for-the-badge)](https://unity3d.com/)
-[![License](https://img.shields.io/github/license/Lx34r/com.moirai.framework?style=for-the-badge)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/Lx34r/com.moirai.framework?style=for-the-badge)](https://github.com/Lx34r/com.moirai.framework)
-[![Issues](https://img.shields.io/github/issues/Lx34r/com.moirai.framework?style=for-the-badge)](https://github.com/Lx34r/com.moirai.framework/issues)
-[![Top Language](https://img.shields.io/github/languages/top/Lx34r/com.moirai.framework?style=for-the-badge)](https://github.com/Lx34r/com.moirai.framework)
+[![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue.svg?style=flat-square)](https://unity3d.com/)
+[![License](https://img.shields.io/github/license/Lx34r/com.moirai.framework?style=flat-square)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/Lx34r/com.moirai.framework?style=flat-square)](https://github.com/Lx34r/com.moirai.framework)
+[![Issues](https://img.shields.io/github/issues/Lx34r/com.moirai.framework?style=flat-square)](https://github.com/Lx34r/com.moirai.framework/issues)
+[![Top Language](https://img.shields.io/github/languages/top/Lx34r/com.moirai.framework?style=flat-square)](https://github.com/Lx34r/com.moirai.framework)
 
 </div>
 
@@ -38,7 +38,7 @@
 
 ### 环境要求
 
-- **Unity 版本**: 2021.3.20f1c1（推荐）或更高
+- **Unity 版本**: 2022.3.x（推荐）或更高
 - **支持版本**: Unity 2019.4 / 2020.3 / 2021.3 / 2022.3
 - **开发环境**: .NET 4.x
 - **支持平台**: Windows、OSX、Android、iOS、WebGL
