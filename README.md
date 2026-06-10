@@ -62,6 +62,14 @@
 
 ### 快速上手
 
+#### 方式一：一键安装（推荐）
+
+1. 下载 [MoiraiFrameworkInstaller.cs](https://raw.githubusercontent.com/Lx34r/com.moirai.framework/main/Installer~/MoiraiFrameworkInstaller.cs)，放入工程的 `Assets/Editor/` 目录
+2. 回到 Unity，脚本会自动检测并添加 OpenUPM Scoped Registry，然后导入框架（也可手动执行菜单 `Moirai/Install Framework`）
+3. 安装完成后可删除该脚本，然后从下方第 3 步继续
+
+#### 方式二：手动安装
+
 1. 在 **Project Settings/Unity Package Manager** 中，手动添加 **Scoped Registry**：
 
    ```
