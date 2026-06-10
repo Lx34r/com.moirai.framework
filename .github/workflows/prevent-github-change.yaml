@@ -1,0 +1,12 @@
+name: Prevent github change
+on:
+  pull_request:
+    paths:
+      - ".github/**/*.yaml"
+      - ".github/**/*.yml"
+
+jobs:
+  detect:
+    permissions:
+      contents: read
+    uses: Lx34r/GitHubActions/.github/workflows/prevent-github-change.yaml@main

@@ -7,10 +7,13 @@ on:
         description: "tag: git tag you want create. (sample 1.0.0)"
         required: true
       dry-run:
-        description: "dry-run: true will never create relase/nuget."
+        description: "dry-run: true will never create release/nuget."
         required: true
         default: false
         type: boolean
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   update-packagejson:
@@ -20,8 +23,8 @@ jobs:
     uses: Lx34r/GitHubActions/.github/workflows/update-packagejson.yaml@main
     with:
       file-path: ./package.json
-      tag: ${{ inputs.tag }}
-      dry-run: ${{ inputs.dry-run }}
+      tag: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+      dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
 
   # release
   create-release:
@@ -32,8 +35,8 @@ jobs:
     uses: Lx34r/GitHubActions/.github/workflows/create-release.yaml@main
     with:
       commit-id: ${{ needs.update-packagejson.outputs.sha }}
-      dry-run: ${{ inputs.dry-run }}
-      tag: ${{ inputs.tag }}
+      dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
+      tag: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
       nuget-push: false
       release-format: "{0}"
       release-upload: false
