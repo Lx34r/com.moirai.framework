@@ -10,7 +10,7 @@ namespace Moirai.Atropos.Save
         protected override void SerializeToStream(object objectToSave, MemoryStream stream)
         {
             string json = JSONUtility.ToJson(objectToSave);
-            using (StreamWriter streamWriter = new StreamWriter(stream, leaveOpen: true))
+            using (StreamWriter streamWriter = new StreamWriter(stream, System.Text.Encoding.UTF8, 1024, leaveOpen: true))
             {
                 streamWriter.Write(json);
                 streamWriter.Flush();
@@ -19,7 +19,7 @@ namespace Moirai.Atropos.Save
 
         protected override T DeserializeFromStream<T>(MemoryStream stream)
         {
-            using (StreamReader streamReader = new StreamReader(stream, leaveOpen: true))
+            using (StreamReader streamReader = new StreamReader(stream, System.Text.Encoding.UTF8, true, 1024, leaveOpen: true))
             {
                 return JSONUtility.ToObject<T>(streamReader.ReadToEnd());
             }
