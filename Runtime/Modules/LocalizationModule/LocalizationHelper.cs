@@ -80,7 +80,7 @@ namespace Moirai.Atropos.Localization
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"Failed to resolve localization for ID: {textId}. Error: {ex.Message}");
+                    Log.Error($"Failed to resolve localization for ID: {textId}. Error: {ex}");
                 }
             }
 

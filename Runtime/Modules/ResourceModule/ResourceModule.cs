@@ -1190,6 +1190,10 @@ namespace Moirai.Atropos.Resource
                     {
                         Log.Error($"LoadAssetAsync Waiting {assetObjectKey} timeout. reason:{ex.Message}");
                     }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
         }

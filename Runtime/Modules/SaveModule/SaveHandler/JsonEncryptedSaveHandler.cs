@@ -45,8 +45,8 @@ namespace Moirai.Atropos.Save
                 }
                 catch (CryptographicException ce)
                 {
-                    Debug.LogError("[SaveHandler] Encryption key error: " + ce.Message);
-                    return null;
+                    Debug.LogError("[SaveHandler] Decryption failed for JSON save data: " + ce);
+                    return Task.FromResult<T>(default);
                 }
                 memoryStream.Position = 0;
                 savedObject = JSONUtility.ToObject<T>(streamReader.ReadToEnd());

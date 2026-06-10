@@ -103,9 +103,13 @@ namespace Moirai.Atropos
                 if (ex.CancellationToken == cts.Token)
                 {
                     Log.Warning("HttpPost Timeout");
-                    unityWebRequest.Dispose();
-                    return string.Empty;
                 }
+                else
+                {
+                    Log.Warning($"HttpPost {unityWebRequest.url} canceled: {ex.Message}");
+                }
+                unityWebRequest.Dispose();
+                return string.Empty;
             }
 
             string ret = unityWebRequest.downloadHandler.text;

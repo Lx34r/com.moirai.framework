@@ -62,8 +62,9 @@ namespace Moirai.Atropos.R3
                 var handler = GetOrCreateHandler(objectType);
                 return handler.ReadJson(reader, serializer);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                UnityEngine.Debug.LogWarning($"[ReactivePropertyConverter] Failed to deserialize {objectType.Name}, falling back to default: {ex}");
                 return Activator.CreateInstance(objectType);
             }
         }

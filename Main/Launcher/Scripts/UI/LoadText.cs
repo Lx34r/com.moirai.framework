@@ -186,7 +186,7 @@ namespace Moirai.Main
             }
             catch (Exception ex)
             {
-                Log.Error("Error parsing JSON: " + ex.Message);
+                Log.Error($"Error parsing built-in text JSON ({buildInTextName}{suffix}): {ex}");
             }
         }
     }

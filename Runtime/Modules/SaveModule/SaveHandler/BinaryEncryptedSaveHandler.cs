@@ -45,8 +45,8 @@ namespace Moirai.Atropos.Save
             }
             catch (CryptographicException ce)
             {
-                Debug.LogError("[SaveHandler] Encryption key error: " + ce.Message);
-                return null;
+                Debug.LogError("[SaveHandler] Decryption failed for binary save data: " + ce);
+                return Task.FromResult<T>(default);
             }
             memoryStream.Position = 0;
             T savedObject = (T)_formatter.Deserialize(memoryStream);

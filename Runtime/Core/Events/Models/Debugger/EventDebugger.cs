@@ -418,7 +418,7 @@ namespace Moirai.Atropos.Events
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError(ex);
+                    Debug.LogError($"[EventDebugger] Failed to reconstruct event '{eventBase.EventBaseName}' (type: {eventBase.EventType}): {ex}");
                 }
                 if (newEvent == null)
                 {

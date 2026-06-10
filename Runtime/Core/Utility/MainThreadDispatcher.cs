@@ -27,22 +27,22 @@ namespace Moirai.Atropos
 
         private void Update()
         {
-            try
+            lock (s_RequestsQueue)
             {
-                lock (s_RequestsQueue)
+                // 批量处理优化。避免单帧卡顿，适合高频小操作场景
+                int batchSize = Mathf.Min(s_RequestsQueue.Count, MAX_BATCH_SIZE);
+                for (int i = 0; i < batchSize; i++)
                 {
-                    // 批量处理优化。避免单帧卡顿，适合高频小操作场景
-                    int batchSize = Mathf.Min(s_RequestsQueue.Count, MAX_BATCH_SIZE);
-                    for (int i = 0; i < batchSize; i++)
+                    Action action = s_RequestsQueue.Dequeue();
+                    try
                     {
-                        s_RequestsQueue.Dequeue()?.Invoke();
+                        action?.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"MainThreadDispatcher action execution failed: {ex}");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // 抛出异常
-                Log.Warning($"Action execution failed: {ex.Message}");
             }
         }
 

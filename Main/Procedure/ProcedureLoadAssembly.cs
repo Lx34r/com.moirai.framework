@@ -284,7 +284,7 @@ namespace Moirai.Main
             catch (Exception e)
             {
                 _failureMetadataAssetCount++;
-                Log.Fatal(e.Message);
+                Log.Fatal(e);
                 throw;
             }
             finally

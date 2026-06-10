@@ -110,7 +110,7 @@ namespace Moirai.Atropos
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                Log.Error($"Failed to compute MD5 for file '{pathName}': {ex}");
                 return "";
             }
         }
