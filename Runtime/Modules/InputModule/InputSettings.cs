@@ -32,18 +32,20 @@ namespace Moirai.Atropos.Input
 #if !ENABLE_LEGACY_INPUT_MANAGER
                         Log.Error("Please enable {0} Handling in Project Settings!", Instance.m_InputType);
                         return null;
-#endif
+#else
                         Instance._inputHandler = new UnityInputManagerHandler();
                         Instance._inputHandler.OnInit();
+#endif
                         break;
 
                     case EInputType.InputSystem:
 #if !ENABLE_INPUT_SYSTEM
                         Log.Error("Please install {0} package!", Instance.m_InputType);
                         return null;
-#endif
+#else
                         Instance._inputHandler = new UnityInputSystemHandler();
                         Instance._inputHandler.OnInit();
+#endif
                         break;
 
                     case EInputType.UIMobile:
