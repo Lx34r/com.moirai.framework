@@ -1,59 +1,28 @@
 using System.IO;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Moirai.Atropos;
 
 namespace Moirai.Atropos.Save
 {
-    public class JsonEncryptedSaveHandler : SaveEncryptor, ISaveHandler
+    /// <summary>
+    /// 将指定位置的指定对象保存到磁盘上，转换为json并加密
+    /// </summary>
+    public class JsonEncryptedSaveHandler : EncryptedSaveHandlerBase
     {
-        /// <summary>
-        /// 将指定位置的指定对象保存到磁盘上，转换为json并加密
-        /// </summary>
-        /// <param name="objectToSave"></param>
-        /// <param name="saveFile"></param>
-        public Task Save(object objectToSave, FileStream saveFile)
+        protected override void SerializeToStream(object objectToSave, MemoryStream stream)
         {
             string json = JSONUtility.ToJson(objectToSave);
-            using (MemoryStream memoryStream = new MemoryStream())
-            using (StreamWriter streamWriter = new StreamWriter(memoryStream))
+            using (StreamWriter streamWriter = new StreamWriter(stream, leaveOpen: true))
             {
                 streamWriter.Write(json);
                 streamWriter.Flush();
-                memoryStream.Position = 0;
-                Encrypt(memoryStream, saveFile, Key);
             }
-            saveFile.Close();
-
-            return Task.CompletedTask;
         }
 
-        /// <summary>
-        /// 加载指定的文件，对其进行解密和解码
-        /// </summary>
-        /// <param name="saveFile"></param>
-        /// <returns></returns>
-        public Task<T> Load<T>(FileStream saveFile)
+        protected override T DeserializeFromStream<T>(MemoryStream stream)
         {
-            T savedObject;
-            using (MemoryStream memoryStream = new MemoryStream())
-            using (StreamReader streamReader = new StreamReader(memoryStream))
+            using (StreamReader streamReader = new StreamReader(stream, leaveOpen: true))
             {
-                try
-                {
-                    Decrypt(saveFile, memoryStream, Key);
-                }
-                catch (CryptographicException ce)
-                {
-                    Log.Error("[SaveHandler] Decryption failed for JSON save data: " + ce);
-                    return Task.FromResult<T>(default);
-                }
-                memoryStream.Position = 0;
-                savedObject = JSONUtility.ToObject<T>(streamReader.ReadToEnd());
+                return JSONUtility.ToObject<T>(streamReader.ReadToEnd());
             }
-            saveFile.Close();
-
-            return Task.FromResult(savedObject);
         }
     }
 }

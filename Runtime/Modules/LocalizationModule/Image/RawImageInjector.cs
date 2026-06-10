@@ -1,54 +1,44 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Moirai.Atropos.Localization
 {
-	public class RawImageInjector : IInjector
+	public class RawImageInjector : ImageInjectorBase
 	{
-		readonly string localizedTextID;
-		readonly RawImage rawImage;
-		readonly Texture[] textures;
+		private readonly RawImage _rawImage;
+		private readonly Texture[] _textures;
 
 		public RawImageInjector(RawImage rawImage, string localizedTextID, Texture[] textures)
+			: base(localizedTextID)
 		{
-			this.localizedTextID = localizedTextID;
-			this.rawImage = rawImage;
-			this.textures = textures;
-		}	
-		public void Inject<T1, T2>(T1 localizedData, T2 localizer) where T2 : LocalizerBase
-		{
-			if (localizedData is int index)
-			{
-				if (string.IsNullOrEmpty(localizedTextID))
-				{
-					rawImage.texture = textures[index];
-				}
-				else
-				{
-					ApplyFromResource().Forget();
-				}
-			}
+			_rawImage = rawImage;
+			_textures = textures;
 		}
 
-		private async UniTaskVoid ApplyFromResource()
+		protected override void ApplyFromArray(int index)
 		{
-			string textIDValue = GameModule.Localization.GetTextFromId(localizedTextID);
-			var result = await GameModule.Resource.LoadAssetAsync<UnityEngine.Object>(textIDValue);
+			_rawImage.texture = _textures[index];
+		}
 
-			if (result is not Sprite or Texture)
+		protected override void ApplyAsset(Object asset)
+		{
+			_rawImage.texture = asset as Texture;
+		}
+
+		protected override string GetExpectedTypeName() => "Texture";
+
+		protected override bool IsExpectedType(Object asset) => asset is Texture;
+
+		protected override bool IsConvertibleType(Object asset) => asset is Sprite;
+
+		protected override bool TryConvertAndApply(Object asset)
+		{
+			if (asset is Sprite sprite)
 			{
-				Log.Error($"本地化图片类型错误，{textIDValue}");
+				_rawImage.texture = sprite.texture;
+				return true;
 			}
-			
-			if (result is Sprite sprite)
-			{
-				Texture texture = sprite.texture;
-				rawImage.texture = texture;
-				Log.Warning($"本地化图片类型错误，已自动转换：{result}");
-				return;
-			}
-			rawImage.texture = result as Texture;
+			return false;
 		}
 	}
 }
