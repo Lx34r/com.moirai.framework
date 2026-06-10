@@ -4,12 +4,23 @@ on:
   push:
     paths:
       - 'README.md'
+      - 'README_*.md'
 
 jobs:
   toc:
     permissions:
       contents: write
+    strategy:
+      max-parallel: 1
+      matrix:
+        include:
+          - target: 'README.md'
+            title: '## 📖目录'
+          # 添加多语言 README 时，在此处追加对应的文件与标题，例如：
+          # - target: 'README_EN.md'
+          #   title: '## 📖Table of Contents'
     uses: Lx34r/GitHubActions/.github/workflows/_toc-generator.yaml@main
     with:
-      TOC_TITLE: "## Table of Contents"
+      TOC_TITLE: ${{ matrix.title }}
+      TARGET_PATHS: ${{ matrix.target }}
     secrets: inherit
