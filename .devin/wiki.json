@@ -1,0 +1,24 @@
+{
+  "repo_notes": [
+    {
+      "content": "此仓库是 com.moirai.framework 项目，请优先记录核心框架结构、模块划分及主要入口点。"
+    }
+  ],
+  "pages": [
+    {
+      "title": "架构概览",
+      "purpose": "框架整体架构及各模块交互方式的高层概述",
+      "parent": null
+    },
+    {
+      "title": "核心模块",
+      "purpose": "记录框架核心模块的功能与实现",
+      "parent": "架构概览"
+    },
+    {
+      "title": "快速入门",
+      "purpose": "如何引入和使用该框架的入门指南",
+      "parent": null
+    }
+  ]
+}

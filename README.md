@@ -7,6 +7,7 @@
 [![Last Commit](https://img.shields.io/github/last-commit/Lx34r/com.moirai.framework?style=flat-square)](https://github.com/Lx34r/com.moirai.framework)
 [![Issues](https://img.shields.io/github/issues/Lx34r/com.moirai.framework?style=flat-square)](https://github.com/Lx34r/com.moirai.framework/issues)
 [![Top Language](https://img.shields.io/github/languages/top/Lx34r/com.moirai.framework?style=flat-square)](https://github.com/Lx34r/com.moirai.framework)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Lx34r/com.moirai.framework)
 
 </div>
 
