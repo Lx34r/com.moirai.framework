@@ -44,7 +44,7 @@ namespace Moirai.Atropos
             catch (Exception e)
             {
                 responseCode = ResponseCode.UNKNOWN_ERROR;
-                errorMessage = e.Message;
+                errorMessage = e.ToString();
             }
             finally
             {
@@ -75,7 +75,7 @@ namespace Moirai.Atropos
             catch (Exception e)
             {
                 responseCode = ResponseCode.UNKNOWN_ERROR;
-                errorMessage = e.Message;
+                errorMessage = e.ToString();
                 result = default(T);
             }
             finally
@@ -107,7 +107,7 @@ namespace Moirai.Atropos
             catch (Exception e)
             {
                 responseCode = ResponseCode.UNKNOWN_ERROR;
-                errorMessage = e.Message;
+                errorMessage = e.ToString();
                 result = default(T);
             }
             finally

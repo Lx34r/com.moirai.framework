@@ -255,7 +255,7 @@ namespace Moirai.Atropos.Audio
             }
             catch (Exception e)
             {
-                Log.Error(e.ToString());
+                Log.Error($"[AudioModule] Failed to check AudioSettings.unityAudioDisabled via reflection: {e}");
             }
 #endif
             

@@ -2,7 +2,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
-using UnityEngine;
+using Moirai.Atropos;
 
 namespace Moirai.Atropos.Save
 {
@@ -52,8 +52,8 @@ namespace Moirai.Atropos.Save
             }
             catch (CryptographicException ce)
             {
-                Debug.LogError("[SaveHandler] Encryption key error: " + ce.Message);
-                return null;
+                Log.Error("[SaveHandler] Decryption failed for binary save data: " + ce);
+                return Task.FromResult<T>(default);
             }
             memoryStream.Position = 0;
             T savedObject = (T)_formatter.Deserialize(memoryStream);
