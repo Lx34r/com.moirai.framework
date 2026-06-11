@@ -1,0 +1,80 @@
+# =============== #
+# Unity generated #
+# =============== #
+[Aa]rtifacts/
+[Ll]ibrary/
+[Oo]bj/
+[Tt]emp/
+[Ss]treaming[Aa]ssets/
+[Aa]ctual[Ii]mages/
+[Ll]og/
+[Ll]ogs/
+[Aa]ctual[Ii]mages.meta
+[Ss]treaming[Aa]ssets.meta
+[Uu]serSettings/
+[Aa]ssetBundles/
+[Mm]emoryCaptures/
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+*.aspx
+*.browser
+*.csproj
+*.exe
+*.ini
+*.log
+*.map
+# *.mdb
+*.npmrc
+*.pyc
+*.resS
+*.sdf
+*.sln
+*.sln.DotSettings.user
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.userprefs
+*.orig
+*.orig.meta
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+# Icon?
+ehthumbs.db
+Thumbs.db
+
+# ===================================== #
+# IDE generated  #
+# ===================================== #
+.vs
+.vscode
+.idea
+
+# ===================================== #
+# Local data #
+# ===================================== #
+[Hh]ybridCLRData/
+[Aa]ssets/AATemp/
+[Aa]ssets/AATemp.meta
+
+# Build
+[Bb]uild/
+[Bb]uilds/
+
+# Bundles
+[Bb]undles/
+
+# Sandbox
+[Ss]andbox/
+
+# Samples
+[Ss]amples/
+[Ss]amples.meta
