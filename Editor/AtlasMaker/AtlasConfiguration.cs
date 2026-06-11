@@ -50,6 +50,5 @@ namespace Moirai.Atropos.Editor
         [Header("排除关键词")]
         public string[] excludeKeywords = { "_Delete", "_Temp" };
     }
-
-#endif
 }
+#endif
