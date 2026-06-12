@@ -1,9 +1,36 @@
+Moirai Framework
+===
+
+[![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue.svg?style=flat-square)](https://unity3d.com/)
+[![Releases](https://img.shields.io/github/release/TeamMoirai/com.moirai.framework.svg?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework/releases)
+[![License](https://img.shields.io/github/license/TeamMoirai/com.moirai.framework?style=flat-square)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/TeamMoirai/com.moirai.framework?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/TeamMoirai/com.moirai.framework?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework)
+[![Top Language](https://img.shields.io/github/languages/top/TeamMoirai/com.moirai.framework?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework)
+[![README](https://img.shields.io/badge/README-English-FFA500?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework/blob/main/README_EN.md)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/TeamMoirai/com.moirai.framework)
+
+## 📖 简介
+
+**Moirai Framework** 是一个简单（新手友好、开箱即用）且强大的 Unity 框架全平台解决方案。
+
+### ✨ 核心特性
+
+- 🚀 **开箱即用** - 5 分钟即可上手整套开发流程，代码整洁，思路清晰
+- 🔥 **高性能** - 基于 UniTask 的异步系统，零 GC 事件分发，严格的内存管理
+- 🧩 **高内聚低耦合** - 模块化设计，可轻松移除或替换不需要的模块
+- 🔄 **热更新支持** - 集成 HybridCLR，全平台热更新流程已跑通
+- 📦 **资源管理** - 集成 YooAsset，支持 LRU、ARC 缓存策略，自动资源释放
+- 📊 **配置表系统** - 集成 Luban，支持懒加载、异步加载、同步加载
+- 🎨 **UI 框架** - 商业化 UI 开发流程，支持代码自动生成
+- 🌍 **全平台支持** - Windows、Android、iOS、WebGL、微信小游戏等
+
+---
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## 📚目录
 
-- [📖 简介](#-%E7%AE%80%E4%BB%8B)
-  - [✨ 核心特性](#-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7)
 - [🚀 快速开始](#-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
   - [环境要求](#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82)
   - [快速上手](#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B)
@@ -40,36 +67,6 @@
   - [👥 贡献者](#-%E8%B4%A1%E7%8C%AE%E8%80%85)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<div align="center">
-
-![Logo](Documentation~/src/logo.jpg)
-
-[![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue.svg?style=flat-square)](https://unity3d.com/)
-[![License](https://img.shields.io/github/license/TeamMoirai/com.moirai.framework?style=flat-square)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/TeamMoirai/com.moirai.framework?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework)
-[![Issues](https://img.shields.io/github/issues/TeamMoirai/com.moirai.framework?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework/issues)
-[![Top Language](https://img.shields.io/github/languages/top/TeamMoirai/com.moirai.framework?style=flat-square)](https://github.com/TeamMoirai/com.moirai.framework)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/TeamMoirai/com.moirai.framework)
-
-</div>
-
-## 📖 简介
-
-**Moirai Framework** 是一个简单（新手友好、开箱即用）且强大的 Unity 框架全平台解决方案。
-
-### ✨ 核心特性
-
-- 🚀 **开箱即用** - 5 分钟即可上手整套开发流程，代码整洁，思路清晰
-- 🔥 **高性能** - 基于 UniTask 的异步系统，零 GC 事件分发，严格的内存管理
-- 🧩 **高内聚低耦合** - 模块化设计，可轻松移除或替换不需要的模块
-- 🔄 **热更新支持** - 集成 HybridCLR，全平台热更新流程已跑通
-- 📦 **资源管理** - 集成 YooAsset，支持 LRU、ARC 缓存策略，自动资源释放
-- 📊 **配置表系统** - 集成 Luban，支持懒加载、异步加载、同步加载
-- 🎨 **UI 框架** - 商业化 UI 开发流程，支持代码自动生成
-- 🌍 **全平台支持** - Windows、Android、iOS、WebGL、微信小游戏等
-
----
 
 ## 🚀 快速开始
 
