@@ -1,0 +1,26 @@
+{
+  "name": "com.moirai.framework.installer",
+  "displayName": "Moirai Framework Installer",
+  "category": "Tools",
+  "description": "Moirai framework installer. Installs the core package and imports project templates.",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "unityRelease": "0f1",
+  "license": "MIT",
+  "keywords": [
+    "Framework",
+    "Installer"
+  ],
+  "repository": {
+    "name": "com.moirai.framework.installer",
+    "url": "https://github.com/TeamMoirai/com.moirai.framework.git#installer",
+    "type": "git"
+  },
+  "author": {
+    "name": "Team Moirai",
+    "url": "https://github.com/TeamMoirai"
+  },
+  "changelogUrl": "",
+  "documentationUrl": "https://github.com/TeamMoirai/com.moirai.framework/tree/installer#readme",
+  "dependencies": {}
+}
