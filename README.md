@@ -85,12 +85,21 @@
 
 ##### 方式一：一键安装（推荐）
 
-1. 克隆 `install` 分支至工程目录
+1. 通过以下任一方式安装 **Framework Installer**：
 
-   ```bash
-   git clone --branch installer --single-branch https://github.com/TeamMoirai/com.moirai.framework.git FrameworkInstaller
-   ```
+   - 在 **Window/Package Manager** 中，通过 Git URL 安装：
 
+      ```bash
+      https://github.com/TeamMoirai/com.moirai.framework.git#installer
+      ```
+      <img src="Documentation~\src\quick-start-1.png" alt="quick-start-scoped-registries" />
+   
+   - 克隆 `install` 分支至工程目录（Assets/...）：
+
+      ```bash
+      git clone --branch installer --single-branch https://github.com/TeamMoirai/com.moirai.framework.git com.moirai.framework.installer
+      ```
+   
 2. 回到 Unity，手动执行菜单 `Tools/Settings/Install Framework`
 
 3. 安装完成后可安全删除该脚本
