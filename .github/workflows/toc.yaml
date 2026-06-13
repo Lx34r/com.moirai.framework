@@ -15,10 +15,10 @@ jobs:
       matrix:
         include:
           - target: 'README.md'
-            title: '## 📚目录'
+            title: '## 📚 目录'
           # 添加多语言 README 时，在此处追加对应的文件与标题，例如：
-          # - target: 'README_EN.md'
-          #   title: '## 📚Table of Contents'
+          - target: 'README_EN.md'
+            title: '## 📚 Table of Contents'
     uses: TeamMoirai/GitHubActions/.github/workflows/_toc-generator.yaml@main
     with:
       TOC_TITLE: ${{ matrix.title }}
