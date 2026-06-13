@@ -15,15 +15,14 @@ namespace Moirai.Atropos.Installer.Editor
     {
         private const string MENU_PATH = "Tools/Settings/Install Framework";
         private const string TEMPLATES_PATH = "Packages/" + CORE_PACKAGE_NAME + "/Templates~";
-        private const string NORMAL_TEMPLATE_NAME = "NormalTemplate";
-        private const string HYBRID_TEMPLATE_NAME = "HybridTemplate";
-        private const string NORMAL_TEMPLATE_PATH = TEMPLATES_PATH + "/" + NORMAL_TEMPLATE_NAME;
-        private const string HYBRID_TEMPLATE_PATH = TEMPLATES_PATH + "/" + HYBRID_TEMPLATE_NAME;
+        private const string TEMPLATE_REQUIREMENTS_PATH = TEMPLATES_PATH + "/@Requirements";
+        private const string TEMPLATE_NORMAL_PATH = TEMPLATES_PATH + "/NormalTemplate";
+        private const string TEMPLATE_HYBRID_PATH = TEMPLATES_PATH + "/HybridTemplate";
 
         private const string CORE_PACKAGE_NAME = "com.moirai.framework";
         private const string URP_PACKAGE_NAME = "com.unity.render-pipelines.universal";
         private const string HYBRID_CLR_PACKAGE_NAME = "com.code-philosophy.hybridclr";
-        private const string ENABLE_LOG_SYMBOL = "ENABLE_LOG";
+        private const string ENABLE_LOG_SYMBOL = "LOG_ALL";
         private const string ENABLE_HYBRID_CLR_SYMBOL = "ENABLE_HYBRIDCLR";
 
         private const string REQUIRED_REGISTRY_NAME = "Open UPM";
@@ -44,15 +43,13 @@ namespace Moirai.Atropos.Installer.Editor
 
         private static readonly string[] s_RuntimeAssetMarkers =
         {
-            "Assets/Bundles",
-            "Assets/YooAsset"
+            "Assets/AssetRaw",
+            "Assets/Settings/YooAsset"
         };
 
         private static readonly string[] s_HybridAssetMarkers =
         {
-            "Assets/Scripts/Hotfix",
             "Assets/HybridCLRGenerate",
-            "Assets/Bundles/DLL"
         };
 
         private InstallCheckResult _checkResult;
@@ -78,7 +75,7 @@ namespace Moirai.Atropos.Installer.Editor
             HybridTemplate
         }
 
-        [MenuItem(MENU_PATH, false, -3000)]
+        [MenuItem(MENU_PATH, false, -3001)]
         private static void OpenWindow()
         {
             FrameworkInstallerWindow window = GetWindow<FrameworkInstallerWindow>();
@@ -206,8 +203,8 @@ namespace Moirai.Atropos.Installer.Editor
                 DrawStatusRow("HybridCLR package", _checkResult.hasHybridClr, _checkResult.hybridClrVersionText, MessageType.Warning);
                 DrawStatusRow("Installer state", _checkResult.projectState != ProjectInstallState.NotInstalled, _checkResult.StateText, MessageType.Warning);
                 DrawStatusRow("State source", true, _checkResult.stateSource);
-                DrawStatusRow("Normal template folder", _checkResult.hasNormalTemplate, NORMAL_TEMPLATE_PATH);
-                DrawStatusRow("Hybrid template folder", _checkResult.hasHybridTemplate, HYBRID_TEMPLATE_PATH, MessageType.Warning);
+                DrawStatusRow("Normal template folder", _checkResult.hasNormalTemplate, TEMPLATE_NORMAL_PATH);
+                DrawStatusRow("Hybrid template folder", _checkResult.hasHybridTemplate, TEMPLATE_HYBRID_PATH, MessageType.Warning);
             }
         }
 
@@ -502,6 +499,8 @@ namespace Moirai.Atropos.Installer.Editor
                 return;
             }
 
+            CopyTemplateDirectory(TEMPLATE_REQUIREMENTS_PATH);
+
             string templatePath = GetSelectedTemplatePath();
             string prompt = _checkResult.projectState == ProjectInstallState.NormalTemplate
                 ? "Upgrade the current project to the Hybrid template?"
@@ -700,7 +699,7 @@ namespace Moirai.Atropos.Installer.Editor
 
         private string GetSelectedTemplatePath()
         {
-            return _selectedTemplate == TemplateType.Hybrid ? HYBRID_TEMPLATE_PATH : NORMAL_TEMPLATE_PATH;
+            return _selectedTemplate == TemplateType.Hybrid ? TEMPLATE_HYBRID_PATH : TEMPLATE_NORMAL_PATH;
         }
 
         private static void CopyTemplateDirectory(string templatePath)
@@ -1114,8 +1113,8 @@ namespace Moirai.Atropos.Installer.Editor
                     urpVersionText = string.IsNullOrEmpty(urpVersion) ? "Not installed" : urpVersion,
                     hasHybridClr = !string.IsNullOrEmpty(hybridClrVersion),
                     hybridClrVersionText = string.IsNullOrEmpty(hybridClrVersion) ? "Not installed" : hybridClrVersion,
-                    hasNormalTemplate = Directory.Exists(NORMAL_TEMPLATE_PATH),
-                    hasHybridTemplate = Directory.Exists(HYBRID_TEMPLATE_PATH)
+                    hasNormalTemplate = Directory.Exists(TEMPLATE_NORMAL_PATH),
+                    hasHybridTemplate = Directory.Exists(TEMPLATE_HYBRID_PATH)
                 };
             }
 
