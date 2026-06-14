@@ -73,7 +73,9 @@ Moirai Framework
 ### 环境要求
 
 - **Unity 版本**: 2022.3.x（推荐）或更高
+
 - **开发环境**: .NET 4.x
+
 - **支持平台**: Windows、OSX、Android、iOS、WebGL
 
 ### 快速上手
@@ -176,7 +178,7 @@ com.moirai.framework/
 │   │   ├── GameSettings/ #   画面设置
 │   │   ├── DataStructure/#   IOC容器、优先队列、稀疏数组等
 │   │   └── Extension/    #   通用扩展方法
-│   └── Modules/          # 13 个功能模块
+│   └── Modules/          #   功能模块
 │       ├── ResourceModule/    # YooAsset 资源管理
 │       ├── UIModule/          # UI 框架（窗口/控件/层）
 │       ├── AudioModule/       # 音频系统（分类/代理/淡入淡出）
@@ -190,12 +192,11 @@ com.moirai.framework/
 │       ├── TimerModule/       # 计时器
 │       ├── DebuggerModule/    # 运行时调试器
 │       └── UpdateDriver/      # 更新循环驱动
-├── Main/                 # 启动器 UI 与 Procedure 流程定义
 ├── Editor/               # 编辑器工具集
-├── Plugins/              # 第三方库（SharpZipLib, SimpleJSON, LubanLib）
-├── Samples~/             # InputSystem 按键提示示例
-├── Templates~/            # 热更新入口模板
-└── Tests/                # 单元测试（13 个测试文件）
+├── Plugins/              # 第三方库
+├── Samples~/             # 示例
+├── Templates~/           # 项目初始模板
+└── Tests/                # 单元测试
 ```
 
 ### 模块系统
@@ -522,6 +523,35 @@ Log.Error("严重错误!");
 | UI Module | UI 绑定代码自动生成、组件 Inspector |
 | Input Module | 输入动作配置编辑器、按键图标集合编辑器 |
 | YooAsset | 构建缓存清理、内置目录、自定义构建管线、Shader 变体收集 |
+
+---
+
+##  📁 推荐项目结构
+
+  ```text
+  Project Name/
+  ├── Client/                        # Unity 客户端工程
+  │   └── Assets/
+  │       ├── AssetArt/              # 美术资源目录
+  │   		└── Atlas/             # 自动生成图集目录
+  │       ├── AssetRaw/              # 热更资源目录
+  │       │   ├── Audio/             # 音频资源
+  │       │   ├── Config/            # 配置和本地化资源
+  │       │   ├── DLL/               # 热更程序集资源
+  │       │   ├── Scene/             # 资源场景
+  │       │   └── UI/                # UI 预制体
+  │       ├── Editor/                # 项目编辑器脚本
+  │       ├── HybridCLRData/     	   # HybridCLR 生成内容
+  │       ├── Scenes/                # 启动场景
+  │       ├── Scripts/
+  │       │   ├── GameBase/          # 主程序程序集（启动器与流程）
+  │       │   ├── GameLib/           # 第三方库程序集 [Dll]
+  │       │   ├── GameLogic/         # 游戏业务逻辑程序集 [Dll]
+  │       │       ├── HotfixEntry.cs     # 热更主入口
+  │       │   └── GameProto/         # 游戏配置协议程序集 [Dll]
+  │       └── YooAsset/              # YooAsset 配置
+  └── Config/                        # 配置表工程
+  ```
 
 ---
 

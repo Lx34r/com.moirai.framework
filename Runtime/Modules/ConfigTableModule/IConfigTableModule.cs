@@ -1,14 +1,14 @@
-﻿ using System.Collections.Generic;
- using System.Threading;
- using Cysharp.Threading.Tasks;
- using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
- namespace Moirai.Atropos
+namespace Moirai.Atropos.ConfigTable
 {
     /// <summary>
     /// 配置表辅助器接口。
     /// </summary>
-      public interface IConfigHelper
+      public interface IConfigTableModule
       {
           /// <summary>
           /// 从配置表获取所有多语言文本。

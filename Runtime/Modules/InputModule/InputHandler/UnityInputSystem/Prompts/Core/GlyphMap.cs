@@ -13,20 +13,16 @@ namespace Moirai.Atropos.Input.Prompts
     [Serializable]
     public class PromptGlyph
     {
-        /// <summary>
-        /// 对应的图标。假设 TMP Sprite 资源和 Sprite 已同步并且有相同的名称
-        /// </summary>
         [TableColumnWidth(57, Resizable = false)]
         [PreviewField(Alignment = ObjectFieldAlignment.Left)]
         [SerializeField] private Sprite m_Icon;
+        /// <summary>对应的图标。假设 TMP Sprite 资源和 Sprite 已同步并且有相同的名称</summary>
         public Sprite Icon => m_Icon;
 
-        /// <summary>
-        /// 包含此字形的 text mesh sprite sheet 的名称。
-        /// </summary>
         [VerticalGroup("Binding"), LabelText("Sprite Sheet Name")]
         [ReadOnly]
         [SerializeField] private string m_TextMeshSpriteSheetName;
+        /// <summary>包含此字形的 text mesh sprite sheet 的名称。</summary>
         public string TextMeshSpriteSheetName { get => m_TextMeshSpriteSheetName; internal set => m_TextMeshSpriteSheetName = value; }
     }
 
@@ -36,12 +32,11 @@ namespace Moirai.Atropos.Input.Prompts
     [Serializable]
     public class ActionGlyph : PromptGlyph
     {
-        /// <summary>
-        /// 动作绑定的完整路径，例如 <![CDATA["<Gamepad>/leftStick"]]>
-        /// 详情可见 - https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/ActionBindings.html
-        /// </summary>
+        [Tooltip("动作绑定的完整路径，例如 \"<Gamepad>/leftStick\"")]
         [VerticalGroup("Binding"), LabelText("Binding Path")]
         [SerializeField] private string m_ActionBindingPath;
+        /// <summary>动作绑定的完整路径，例如 <![CDATA["<Gamepad>/leftStick"]]></summary>
+        /// <remarks>详情可见 - https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/ActionBindings.html</remarks>
         public string ActionBindingPath => m_ActionBindingPath;
     }
 
@@ -51,11 +46,10 @@ namespace Moirai.Atropos.Input.Prompts
     [Serializable]
     public class DeviceGlyph
     {
-        /// <summary>
-        /// 设备类型
-        /// </summary>
+        [Tooltip("设备类型")]
         [ValueDropdown(nameof(DeviceNames))]
         [SerializeField] private string m_DeviceName;
+        /// <summary>设备类型</summary>
         public string DeviceName => m_DeviceName;
 
         // ReSharper disable once InconsistentNaming
@@ -146,10 +140,10 @@ namespace Moirai.Atropos.Input.Prompts
             { "XRHMD", "XRHMD" },
         };
 
-        /// <summary>
-        /// 设备图标
-        /// </summary>
-        public Sprite DeviceSprite;
+        [Tooltip("设备图标")]
+        [SerializeField] private Sprite m_DeviceSprite;
+        /// <summary>设备图标</summary>
+        public Sprite DeviceSprite => m_DeviceSprite;
     }
 
     /// <summary>
@@ -160,20 +154,22 @@ namespace Moirai.Atropos.Input.Prompts
     {
         [Tooltip("此资产支持的设备类型（可以是多个，例如 mouse/keyboard）")]
         [SerializeField] private DeviceGlyph[] m_DeviceGlyphs;
+        /// <summary>此资产支持的设备类型（可以是多个，例如 mouse/keyboard）</summary>
+        public DeviceGlyph[] DeviceGlyphs => m_DeviceGlyphs;
 
-        [Tooltip("设备说明（仅供参考）")]
+        [Tooltip("设备描述")]
         [TextAreaResizable]
         [SerializeField] private string m_DeviceDescription;
+        /// <summary>设备描述</summary>
+        public string DeviceDescription => m_DeviceDescription;
 
         [Tooltip("所有动作绑定及其相应提示图标的列表")]
         [TableList(ShowPaging = true)]
         [SerializeField] private ActionGlyph[] m_ActionGlyphs;
+        /// <summary>所有动作绑定及其相应提示图标的列表</summary>
+        public ActionGlyph[] ActionGlyphs => m_ActionGlyphs;
 
         [NonSerialized] private string[] _deviceNames;
-
-        public DeviceGlyph[] DeviceGlyphs => m_DeviceGlyphs;
-
-        public ActionGlyph[] ActionGlyphs => m_ActionGlyphs;
 
         /// <summary>
         /// 可用于标识此设备的设备名称
@@ -188,7 +184,7 @@ namespace Moirai.Atropos.Input.Prompts
                     .Distinct() // 去重
                     .ToArray();
 
-                // Debug.Log($"{name}: {string.Join(", ", _deviceNames)}");
+                // Log.Info($"{name}: {string.Join(", ", _deviceNames)}");
 
                 return _deviceNames;
             }
