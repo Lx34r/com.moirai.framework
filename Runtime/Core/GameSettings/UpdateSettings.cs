@@ -57,7 +57,7 @@ namespace Moirai.Atropos
         public static string ProjectName => Instance.m_ProjectName;
 
         [Header("自动同步 [HybridCLRGlobalSettings]")]
-        [SerializeField] private List<string> m_HotUpdateAssemblies = new List<string>() { "GameProto.dll", "GameLogic.dll" };
+        [SerializeField] private List<string> m_HotUpdateAssemblies = new List<string>() { "GameLib.dll", "GameLogic.dll", "GameProto.dll" };
         /// <summary>热更新 dll</summary>
         public static List<string> HotUpdateAssemblies => Instance.m_HotUpdateAssemblies;
 
