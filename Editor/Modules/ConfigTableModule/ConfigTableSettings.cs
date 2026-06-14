@@ -31,7 +31,7 @@ namespace Moirai.Atropos.ConfigTable.Editor
         [SerializeField] private string m_ClientCodeOutPutPath = "Assets/Scripts/GameProto";
         private string ClientCodeOutPutPath =>
             PathUtility.FormatToUnityPath(Path.GetRelativePath(ConfigRootFullPath, m_ClientCodeOutPutPath)) + "/";
-        
+
         #region 初始化配置根目录
 
         private const string TEMPLATES_RELATIVE_PATH = "Templates~/Config";
