@@ -35,7 +35,7 @@ namespace Moirai.Atropos
 
         public void OnInit()
         {
-            _filePath = PathUtility.GetRegularPath(Path.Combine(Application.persistentDataPath, SETTING_FILE_NAME));
+            _filePath = PathUtility.FormatToUnityPath(Path.Combine(Application.persistentDataPath, SETTING_FILE_NAME));
             _settings = new DefaultSetting();
             _serializer = new DefaultSettingSerializer();
             _serializer.RegisterSerializeCallback(0, SerializeDefaultSettingCallback);

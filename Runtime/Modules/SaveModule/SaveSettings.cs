@@ -29,11 +29,15 @@ namespace Moirai.Atropos.Save
                 switch (Instance.m_SaveType)
                 {
                     case ESaveType.Binary:
+#pragma warning disable CS0618 // 类型或成员已过时
                         Instance._saveHandler = new BinarySaveHandler();
+#pragma warning restore CS0618 // 类型或成员已过时
                         break;
 
                     case ESaveType.BinaryEncrypted:
+#pragma warning disable CS0618 // 类型或成员已过时
                         Instance._saveHandler = new BinaryEncryptedSaveHandler();
+#pragma warning restore CS0618 // 类型或成员已过时
                         break;
 
                     case ESaveType.Json:

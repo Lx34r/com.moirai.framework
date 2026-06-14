@@ -22,7 +22,7 @@ namespace Moirai.Atropos.Editor
         private const string MENU_ITEM_PATH = "Tools/Log Define/";
         private const int MENU_ITEM_PRIORITY = 50;
 
-        private static readonly string[] AboveLogScriptingDefineSymbols = new string[]
+        private static readonly string[] s_AboveLogScriptingDefineSymbols = new string[]
         {
             LOG_DEBUG_AND_ABOVE_SYMBOL,
             LOG_INFO_AND_ABOVE_SYMBOL,
@@ -31,7 +31,7 @@ namespace Moirai.Atropos.Editor
             LOG_FATAL_AND_ABOVE_SYMBOL
         };
 
-        private static readonly string[] SpecifyLogScriptingDefineSymbols = new string[]
+        private static readonly string[] s_SpecifyLogScriptingDefineSymbols = new string[]
         {
             LOG_DEBUG_ENABLE_SYMBOL,
             LOG_INFO_ENABLE_SYMBOL,
@@ -48,12 +48,12 @@ namespace Moirai.Atropos.Editor
         {
             ScriptingDefineSymbols.RemoveScriptingDefineSymbol(LOG_ALL_SYMBOL);
         
-            foreach (string specifyLogScriptingDefineSymbol in SpecifyLogScriptingDefineSymbols)
+            foreach (string specifyLogScriptingDefineSymbol in s_SpecifyLogScriptingDefineSymbols)
             {
                 ScriptingDefineSymbols.RemoveScriptingDefineSymbol(specifyLogScriptingDefineSymbol);
             }
         
-            foreach (string aboveLogScriptingDefineSymbol in AboveLogScriptingDefineSymbols)
+            foreach (string aboveLogScriptingDefineSymbol in s_AboveLogScriptingDefineSymbols)
             {
                 ScriptingDefineSymbols.RemoveScriptingDefineSymbol(aboveLogScriptingDefineSymbol);
             }
@@ -518,7 +518,7 @@ namespace Moirai.Atropos.Editor
                 return;
             }
 
-            foreach (string i in AboveLogScriptingDefineSymbols)
+            foreach (string i in s_AboveLogScriptingDefineSymbols)
             {
                 if (i == aboveLogScriptingDefineSymbol)
                 {
@@ -540,7 +540,7 @@ namespace Moirai.Atropos.Editor
                 return;
             }
 
-            foreach (string i in SpecifyLogScriptingDefineSymbols)
+            foreach (string i in s_SpecifyLogScriptingDefineSymbols)
             {
                 if (i == specifyLogScriptingDefineSymbol)
                 {
@@ -569,7 +569,7 @@ namespace Moirai.Atropos.Editor
                     continue;
                 }
 
-                foreach (string i in SpecifyLogScriptingDefineSymbols)
+                foreach (string i in s_SpecifyLogScriptingDefineSymbols)
                 {
                     if (i == specifyLogScriptingDefineSymbol)
                     {

@@ -9,32 +9,17 @@ namespace Moirai.Atropos
     public static class PathUtility
     {
         /// <summary>
-        /// 获取规范的路径。
-        /// </summary>
-        /// <param name="path">要规范的路径。</param>
-        /// <returns>规范的路径。</returns>
-        public static string GetRegularPath(string path)
-        {
-            if (path == null)
-            {
-                return null;
-            }
-
-            return path.Replace('\\', '/');
-        }
-
-        /// <summary>
         /// 获取符合Unity格式的路径。
         /// </summary>
         /// <param name="path"></param>
-        /// <returns></returns>
+        /// <example>D:\Usr\Framework\ -> D:/Usr/Framework/</example>
         public static string FormatToUnityPath(string path) => GetRegularPath(path);
         
         /// <summary>
         /// 获取符合系统文件格式的路径。
         /// </summary>
         /// <param name="path"></param>
-        /// <returns></returns>
+        /// <example>D:/Usr/Framework/ -> D:\Usr\Framework\</example>
         public static string FormatToSysFilePath(string path) => FormatUNCPath(path);
         
         /// <summary>
@@ -121,13 +106,30 @@ namespace Moirai.Atropos
 
             return commonPath;
         }
-        
+
+        /// <summary>
+        /// 获取规范的路径。
+        /// </summary>
+        /// <param name="path">要规范的路径。</param>
+        /// <returns>规范的路径。</returns>
+        /// <example>D:\Usr\Framework\ -> D:/Usr/Framework/</example>
+        private static string GetRegularPath(string path)
+        {
+            if (path == null)
+            {
+                return null;
+            }
+
+            return path.Replace('\\', '/');
+        }
+
         /// <summary>
         /// 标准 Windows 文件路径地址合并；
         /// 返回结果示例：Resources\JsonData\
         /// </summary>
         /// <param name="paths">路径params</param>
         /// <returns>合并的路径</returns>
+        // ReSharper disable once InconsistentNaming
         public static string CombineUNCPath(params string[] paths)
         {
             var resultPath = System.IO.Path.Combine(paths);
@@ -136,20 +138,21 @@ namespace Moirai.Atropos
         }
         
         /// <summary>
-        /// 格式化UNC地址
-        /// 返回结果示例：D:\DonnYep\Framework\
+        /// 格式化UNC地址<br/>
         /// </summary>
         /// <param name="path">需要格式化的地址</param>
         /// <returns>格式化后的UNC地址</returns>
         /// <para>关于UNC的介绍：https://learn.microsoft.com/zh-cn/dotnet/standard/io/file-path-formats#unc-paths</para>
-        public static string FormatUNCPath(string path)
+        /// <example>D:/Usr/Framework/ -> D:\Usr\Framework\</example>
+        // ReSharper disable once InconsistentNaming
+        private static string FormatUNCPath(string path)
         {
             var fmtPath = path.Replace("/", "\\");
             return fmtPath;
         }
         
         /// <summary>
-        /// 返回结果示例：github.com/DonnYep/Framework
+        /// 返回结果示例：github.com/Usr/Framework
         /// </summary>
         /// <param name="paths">路径</param>
         /// <returns>合并的路径</returns>
@@ -160,12 +163,12 @@ namespace Moirai.Atropos
             return pathResult;
         }
         
-        public static bool IsLegalURI(string uri)
+        public static bool IsLegalUri(string uri)
         {
             return !string.IsNullOrEmpty(uri) && uri.Contains("://");
         }
     
-        public static bool IsLegalHTTPURI(string uri)
+        public static bool IsLegalHttpUri(string uri)
         {
             return !string.IsNullOrEmpty(uri) && (uri.StartsWith("http://", StringComparison.OrdinalIgnoreCase) || uri.StartsWith("https://", StringComparison.OrdinalIgnoreCase));
         }

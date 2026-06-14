@@ -23,24 +23,15 @@ namespace Moirai.Atropos.ConfigTable.Editor
         [InfoBox("修改完配置记得手动[更新配置路径]")]
 
         [FolderPath]
-        [SerializeField] private string m_DataOutPutPath = "Assets/AssetRaw/Default/Config/Table";
+        [SerializeField] private string m_ClientDataOutPutPath = "Assets/AssetRaw/Default/Config/Table";
         private string ClientDataOutPutPath =>
-            new Uri(Path.GetFullPath(ConfigRootFullPath) + "/")
-                .MakeRelativeUri(new Uri(Path.GetFullPath(m_DataOutPutPath))) + "/";
-
-        [Button]
-        private void TEST()
-        {
-            UnityEngine.Debug.Log(ClientDataOutPutPath);
-            UnityEngine.Debug.Log(ClientCodeOutPutPath);
-        }
+            PathUtility.FormatToUnityPath(Path.GetRelativePath(ConfigRootFullPath, m_ClientDataOutPutPath)) + "/";
 
         [FolderPath]
-        [SerializeField] private string m_CodeOutPutPath = "Assets/Scripts/GameProto";
+        [SerializeField] private string m_ClientCodeOutPutPath = "Assets/Scripts/GameProto";
         private string ClientCodeOutPutPath =>
-            new Uri(Path.GetFullPath(ConfigRootFullPath) + "/")
-                .MakeRelativeUri(new Uri(Path.GetFullPath(m_CodeOutPutPath))) + "/";
-
+            PathUtility.FormatToUnityPath(Path.GetRelativePath(ConfigRootFullPath, m_ClientCodeOutPutPath)) + "/";
+        
         #region 初始化配置根目录
 
         private const string TEMPLATES_RELATIVE_PATH = "Templates~/Config";
@@ -125,7 +116,7 @@ namespace Moirai.Atropos.ConfigTable.Editor
             bool insideAssets = targetPath.EndsWith("~");
 
             string targetPathWithoutSuffix = targetPath.TrimEnd('~');
-            string relativePath = "/" + new Uri(Application.dataPath + "/").MakeRelativeUri(new Uri(targetPathWithoutSuffix)).ToString().Replace("\\", "/");
+            string relativePath = "/" + PathUtility.FormatToUnityPath(Path.GetRelativePath(Application.dataPath + "/", targetPathWithoutSuffix));
             if (insideAssets) relativePath += "~";
             m_ConfigRootRelativePath = relativePath;
             EditorUtility.SetDirty(this);
