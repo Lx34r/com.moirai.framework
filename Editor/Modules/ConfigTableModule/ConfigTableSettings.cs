@@ -24,13 +24,22 @@ namespace Moirai.Atropos.ConfigTable.Editor
 
         [FolderPath]
         [SerializeField] private string m_ClientDataOutPutPath = "Assets/AssetRaw/Default/Config/Table";
-        private string ClientDataOutPutPath =>
-            PathUtility.FormatToUnityPath(Path.GetRelativePath(ConfigRootFullPath, m_ClientDataOutPutPath)) + "/";
+        private string ClientDataOutPutPath => GetRelativePath(ConfigRootFullPath, m_ClientDataOutPutPath);
 
         [FolderPath]
         [SerializeField] private string m_ClientCodeOutPutPath = "Assets/Scripts/GameProto";
-        private string ClientCodeOutPutPath =>
-            PathUtility.FormatToUnityPath(Path.GetRelativePath(ConfigRootFullPath, m_ClientCodeOutPutPath)) + "/";
+        private string ClientCodeOutPutPath => GetRelativePath(ConfigRootFullPath, m_ClientCodeOutPutPath);
+
+        /// <summary>资源验证根目录</summary>
+        /// <example>../Client/</example>
+        private string PathValidatorRoot => GetRelativePath(ConfigRootFullPath, Application.dataPath + "/..");
+
+        /// <summary>
+        /// 计算从 <see cref="relativeTo"/> 到 <see cref="path"/> 的相对路径
+        /// </summary>
+        /// <remarks>将绝对路径转换为相对于指定目录的 Unity 风格相对路径</remarks>
+        private static string GetRelativePath(string relativeTo, string path) =>
+            PathUtility.FormatToUnityPath(Path.GetRelativePath(relativeTo, path)) + "/";
 
         #region 初始化配置根目录
 
@@ -173,7 +182,7 @@ namespace Moirai.Atropos.ConfigTable.Editor
 
             string clientDataOutPutPath = ClientDataOutPutPath;
             string clientCodeOutPutPath = ClientCodeOutPutPath;
-            Log.Warning("[ConfigTable] ClientDataOutPutPath:{0}\nClientCodeOutPutPath:{1}", ClientDataOutPutPath, ClientCodeOutPutPath);
+            Log.Warning("[ConfigTable] Update OutPut Path\nClientDataOutPutPath:{0}\nClientCodeOutPutPath:{1}", clientDataOutPutPath, clientCodeOutPutPath);
 
             string content = File.ReadAllText(confPath);
             content = ReplaceConfValue(content, "DATA_OUTPUT_PATH_CLIENT", clientDataOutPutPath);
@@ -183,6 +192,8 @@ namespace Moirai.Atropos.ConfigTable.Editor
             content = ReplaceConfValue(content, "CONFIGINIT_SCRIPT_TARGET", clientCodeOutPutPath + "ConfigTableModule_Init.cs");
             // ReSharper disable once StringLiteralTypo
             content = ReplaceConfValue(content, "EXTERNALTYPEUTIL_SCRIPT_TARGET", clientCodeOutPutPath + "ExternalTypeUtil.cs");
+            content = ReplaceConfValue(content, "PATH_VALIDATOR_ROOT", PathValidatorRoot);
+
             File.WriteAllText(confPath, content);
         }
 
