@@ -85,7 +85,7 @@ namespace Moirai.Atropos
         public static string AssemblyTextAssetExtension => Instance.m_AssemblyTextAssetExtension;
 
         [Tooltip("程序集文本资产资源目录")]
-        [SerializeField] private string m_AssemblyTextAssetPath = "AssetRaw/DLL";
+        [SerializeField] private string m_AssemblyTextAssetPath = "AssetRaw/Default/DLL";
         /// <summary>程序集文本资产资源目录</summary>
         public static string AssemblyTextAssetPath => Instance.m_AssemblyTextAssetPath;
 

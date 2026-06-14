@@ -68,7 +68,15 @@ MonoBehaviour:
       GroupDesc: "\u4EE3\u7801"
       AssetTags: DLL
       ActiveRuleName: DisableGroup
-      Collectors: []
+      Collectors:
+      - CollectPath: Assets/AssetRaw/Default/DLL
+        CollectorGUID: 659ccd64f10df8342b059835bab69789
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
     - GroupName: VFX
       GroupDesc: "\u7279\u6548"
       AssetTags: VFX
