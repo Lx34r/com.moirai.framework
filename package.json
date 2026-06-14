@@ -3,7 +3,7 @@
   "displayName": "Moirai Framework",
   "category": "Tools",
   "description": "Unity development framework integrating HybridCLR for high-performance hot updates, Obfuz for code obfuscation and hardening, and YooAssets for enterprise-grade resource management.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "unity": "2022.3",
   "unityRelease": "0f1",
   "license": "MIT",
