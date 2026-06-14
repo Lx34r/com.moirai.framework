@@ -62,6 +62,7 @@ Moirai Framework
   - [GameSettings — 游戏设置](#gamesettings--%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE)
   - [DataStructure — 数据结构](#datastructure--%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 - [🛠️ 编辑器工具](#-%E7%BC%96%E8%BE%91%E5%99%A8%E5%B7%A5%E5%85%B7)
+- [📁 推荐项目结构](#-%E6%8E%A8%E8%8D%90%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84)
 - [🤝 贡献与支持](#-%E8%B4%A1%E7%8C%AE%E4%B8%8E%E6%94%AF%E6%8C%81)
   - [🌟 生态依赖](#-%E7%94%9F%E6%80%81%E4%BE%9D%E8%B5%96)
   - [👥 贡献者](#-%E8%B4%A1%E7%8C%AE%E8%80%85)
