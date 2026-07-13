@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿#if PRIMETWEEN_INSTALLED
+using System.Collections.Generic;
 using PrimeTween;
 
-#if PRIMETWEEN_INSTALLED
 namespace Moirai.Atropos
 {
     public sealed partial class PrimeTweenHandler

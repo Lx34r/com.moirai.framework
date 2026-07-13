@@ -10,6 +10,7 @@ namespace Moirai.Atropos
     /// <summary>
     /// 基于 PrimeTween 实现的补间动画处理器。
     /// </summary>
+    /// <remarks>需要手动复制框架下的 <c>Templates~/Plugins/PrimeTween</c> 到项目</remarks>
     [Serializable]
     public sealed partial class PrimeTweenHandler : TweenHandler
     {
